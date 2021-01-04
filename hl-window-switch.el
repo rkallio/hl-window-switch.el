@@ -35,6 +35,10 @@
   :group 'hl-window-switch)
 (windowp nil)
 
+(defcustom hl-window-switch-highlight-minibuffer nil
+  "Whether to highlight minibuffer when switching to it."
+  :type 'boolean
+  :group 'hl-window-switch)
 
 (defun hl-window-switch--highlight-line-of-point (&optional frame-or-window)
   "Highlight the location  that the point is on in FRAME-OR-WINDOW.
@@ -50,7 +54,7 @@ apply highlighting."
                       (t (signal 'wrong-type-argument frame-or-window))))
          (window (car (window-list frame 'no-minibuffer nil)))
          (buffer (window-buffer window)))
-    (unless (minibufferp buffer)
+    (when (or (not (minibufferp buffer)) hl-window-switch-highlight-minibuffer)
       (with-current-buffer buffer
         (pulse-momentary-highlight-one-line (point)
                                             hl-window-switch-pulse-face)))))
