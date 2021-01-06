@@ -52,7 +52,7 @@ apply highlighting."
                       ((windowp frame-or-window) (window-frame frame-or-window))
                       ((null frame-or-window) (selected-frame))
                       (t (signal 'wrong-type-argument frame-or-window))))
-         (window (car (window-list frame 'no-minibuffer nil)))
+         (window (car (window-list frame)))
          (buffer (window-buffer window)))
     (when (or (not (minibufferp buffer)) hl-window-switch-highlight-minibuffer)
       (with-current-buffer buffer
