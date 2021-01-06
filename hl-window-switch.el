@@ -68,11 +68,13 @@ apply highlighting."
   "Toggle window switch highlighting."
   :require 'hl-window-switch
   :global t
-  (if hl-window-switch-mode
-      (dolist (hook hl-window-switch--hooks)
-        (add-hook hook #'hl-window-switch--highlight-line-of-point))
+  (let ((hook-function (if hl-window-switch-mode
+                           #'add-hook
+                         #'remove-hook)))
     (dolist (hook hl-window-switch--hooks)
-      (remove-hook hook #'hl-window-switch--highlight-line-of-point))))
+      (funcall hook-function
+               hook
+               #'hl-window-switch--highlight-line-of-point))))
 
 (provide 'hl-window-switch)
 ;;; hl-window-switch.el ends here
