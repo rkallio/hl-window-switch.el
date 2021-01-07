@@ -45,8 +45,9 @@ If FRAME-OR-WINDOW is a frame, pick the current buffer in the
 selected window of that frame.  If FRAME-OR-WINDOW is a window,
 pick the current buffer in that window.  If FRAME-OR-WINDOW is
 omitted or nil, use the frame returned from function
-`selected-frame'.  In case the buffer is a minibuffer, do not
-apply highlighting."
+`selected-frame'.  In case the buffer is a minibuffer, apply
+highlighting depending on the value of
+`hl-window-switch-highlight-minibuffer'."
   (let* ((frame (cond ((framep frame-or-window) frame-or-window)
                       ((windowp frame-or-window) (window-frame frame-or-window))
                       ((null frame-or-window) (selected-frame))
