@@ -33,7 +33,6 @@
   "Face applied to pulse overlay when a buffer is switched to."
   :type 'face
   :group 'hl-window-switch)
-(windowp nil)
 
 (defcustom hl-window-switch-highlight-minibuffer nil
   "Whether to highlight minibuffer when switching to it."
